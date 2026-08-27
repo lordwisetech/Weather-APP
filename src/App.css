@@ -10,9 +10,9 @@
 }
 
 :root {
-  --bg-dark: #0f172a;
-  --card-bg: #1e293b;
-  --card-border: #334155;
+  --bg-dark: #0b1120;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
   --primary: #0284c7;
   --primary-hover: #0369a1;
   --accent: #38bdf8;
@@ -20,68 +20,71 @@
   --text-muted: #94a3b8;
   --text-sub: #cbd5e1;
   --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
 body {
   background-color: var(--bg-dark);
   color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ==========================================
-   Page Layout
+   Page & Container Layout
    ========================================== */
 .page-wrapper {
   min-height: 100vh;
-  padding: 1.25rem 1rem; /* Compact padding for small screens */
+  padding: 1.25rem 1rem 2.5rem 1rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: radial-gradient(circle at top center, #1e293b 0%, #0f172a 100%);
+  background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b1120 100%);
 }
 
 .app-container {
   width: 100%;
-  max-width: 480px; /* Ideal mobile container limit */
+  max-width: 440px; /* Perfect width for mobile app viewports */
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .app-title {
   text-align: center;
-  color: var(--text-main);
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 800;
-  letter-spacing: -0.025em;
-  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25rem;
   background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 /* ==========================================
-   Search Bar (Mobile Optimized Touch Targets)
+   SearchBar Component Styling
    ========================================== */
 .search-form {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  width: 100%;
 }
 
 .search-input {
   flex: 1;
-  min-height: 48px; /* Accessible touch target */
-  padding: 0.75rem 1rem;
+  min-height: 50px; /* Enhanced touch target */
+  padding: 0.75rem 1.125rem;
   font-size: 1rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--card-border);
-  background-color: var(--card-bg);
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
   color: var(--text-main);
   outline: none;
   transition: all 0.2s ease;
@@ -93,120 +96,60 @@ body {
 
 .search-input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
 }
 
 .search-button {
-  min-height: 48px;
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 600;
+  min-height: 50px;
+  padding: 0 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 700;
   color: #ffffff;
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   border: none;
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-button:hover {
-  background-color: var(--primary-hover);
+  transition: transform 0.15s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
 }
 
 .search-button:active {
-  transform: scale(0.97); /* Tactile press effect */
+  transform: scale(0.96);
 }
 
 /* ==========================================
-   Cards & Weather Containers
+   Cards (CurrentWeather & Forecast Wrappers)
    ========================================== */
 .card {
-  background-color: rgba(30, 41, 59, 0.8);
-  backdrop-filter: blur(12px);
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
-  padding: 1.25rem;
+  padding: 1.5rem;
   box-shadow: var(--shadow-md);
-  margin-bottom: 1.25rem;
 }
 
 .card-title {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-main);
   margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
 
-/* ==========================================
-   Recent Searches Chips (Horizontal Scroll)
-   ========================================== */
-.recent-container {
-  margin-bottom: 1.25rem;
-}
-
-.recent-title {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-}
-
-.recent-list {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto; /* Enables horizontal scroll on narrow screens */
-  padding-bottom: 4px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Hide scrollbars for clean look */
-}
-
-.recent-list::-webkit-scrollbar {
-  display: none;
-}
-
-.recent-chip {
-  flex-shrink: 0;
-  min-height: 36px;
-  background-color: var(--card-border);
-  color: var(--text-sub);
-  padding: 0.4rem 1rem;
-  border-radius: var(--radius-full);
-  font-size: 0.875rem;
-  font-weight: 500;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.recent-chip:hover,
-.recent-chip:active {
-  background-color: #475569;
-  color: #ffffff;
-  border-color: var(--accent);
-}
-
-/* ==========================================
-   Weather Details Grid
-   ========================================== */
+/* Detail items within Current Weather */
 .detail-box {
-  background-color: rgba(15, 23, 42, 0.6);
-  padding: 0.875rem;
+  background: rgba(15, 23, 42, 0.5);
+  padding: 0.875rem 1rem;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(51, 65, 85, 0.6);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .detail-label {
   font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
   margin-bottom: 0.25rem;
 }
@@ -218,22 +161,75 @@ body {
 }
 
 /* ==========================================
-   Forecast Grid & Layouts
+   RecentSearches Component (Horizontal Snap)
+   ========================================== */
+.recent-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.recent-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding-left: 0.25rem;
+}
+
+.recent-list {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto; /* Touch scrollable */
+  padding: 0.25rem 0.25rem 0.5rem 0.25rem;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Hide standard scrollbar */
+  -webkit-overflow-scrolling: touch;
+}
+
+.recent-list::-webkit-scrollbar {
+  display: none;
+}
+
+.recent-chip {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  min-height: 40px;
+  background: var(--card-bg);
+  color: var(--text-sub);
+  padding: 0.5rem 1.125rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid var(--card-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.recent-chip:active {
+  transform: scale(0.95);
+  background: #334155;
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+/* ==========================================
+   Forecast Component Grid Layout
    ========================================== */
 .forecast-grid {
   display: grid;
-  /* Auto-fits 2 columns minimum on tiny screens, scales up smoothly */
-  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
   gap: 0.625rem;
 }
 
 .forecast-card {
-  background-color: var(--card-bg);
+  background: rgba(15, 23, 42, 0.4);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
   padding: 1rem 0.5rem;
   text-align: center;
-  box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease;
 }
 
@@ -242,9 +238,9 @@ body {
 }
 
 .forecast-day {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--text-sub);
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -261,19 +257,9 @@ body {
   padding: 1rem 0;
 }
 
-/* ==========================================
-   Tablet & Desktop Enhancement
-   ========================================== */
+/* Desktop Polish */
 @media (min-width: 640px) {
   .page-wrapper {
-    padding: 3rem 1.5rem;
-  }
-
-  .app-title {
-    font-size: 2.25rem;
-  }
-
-  .card {
-    padding: 1.75rem;
+    padding-top: 3rem;
   }
 }
