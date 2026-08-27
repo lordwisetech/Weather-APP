@@ -1,183 +1,279 @@
-/* Base Reset & Dark Mode Theme */
-* {
+/* ==========================================
+   Base Reset & Design Tokens (Mobile-First)
+   ========================================== */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body {
-  background-color: #0f172a; /* Deep dark blue-gray */
-  color: #f8fafc; /* Crisp off-white text */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
-  min-height: 100vh;
+:root {
+  --bg-dark: #0f172a;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --accent: #38bdf8;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-sub: #cbd5e1;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
-/* Page Layout Container */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================
+   Page Layout
+   ========================================== */
 .page-wrapper {
   min-height: 100vh;
-  padding: 40px 20px;
+  padding: 1.25rem 1rem; /* Compact padding for small screens */
   display: flex;
   justify-content: center;
-  background-color: #0f172a;
+  align-items: flex-start;
+  background: radial-gradient(circle at top center, #1e293b 0%, #0f172a 100%);
 }
 
 .app-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 480px; /* Ideal mobile container limit */
 }
 
 .app-title {
   text-align: center;
-  color: #f8fafc;
-  font-size: 2rem;
-  margin-bottom: 24px;
+  color: var(--text-main);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Search Bar Styles */
+/* ==========================================
+   Search Bar (Mobile Optimized Touch Targets)
+   ========================================== */
 .search-form {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .search-input {
   flex: 1;
-  padding: 12px 16px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #334155;
-  background-color: #1e293b;
-  color: #f8fafc;
+  min-height: 48px; /* Accessible touch target */
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  background-color: var(--card-bg);
+  color: var(--text-main);
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .search-input::placeholder {
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .search-input:focus {
-  border-color: #38bdf8;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
 }
 
 .search-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: bold;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: #ffffff;
-  background-color: #0284c7;
+  background-color: var(--primary);
   border: none;
-  borderRadius: 10px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .search-button:hover {
-  background-color: #0369a1;
+  background-color: var(--primary-hover);
 }
 
-/* Weather & Forecast Cards */
+.search-button:active {
+  transform: scale(0.97); /* Tactile press effect */
+}
+
+/* ==========================================
+   Cards & Weather Containers
+   ========================================== */
 .card {
-  background-color: #1e293b; /* Dark slate card background */
-  border: 1px solid #334155;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  margin-bottom: 20px;
+  background-color: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.25rem;
 }
 
 .card-title {
-  font-size: 20px;
-  color: #f8fafc;
-  margin-bottom: 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1rem;
 }
 
-/* Recent Searches Chips */
+/* ==========================================
+   Recent Searches Chips (Horizontal Scroll)
+   ========================================== */
 .recent-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 
 .recent-title {
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
 }
 
 .recent-list {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  overflow-x: auto; /* Enables horizontal scroll on narrow screens */
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Hide scrollbars for clean look */
+}
+
+.recent-list::-webkit-scrollbar {
+  display: none;
 }
 
 .recent-chip {
-  background-color: #334155;
-  color: #e2e8f0;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  border: none;
+  flex-shrink: 0;
+  min-height: 36px;
+  background-color: var(--card-border);
+  color: var(--text-sub);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.recent-chip:hover {
+.recent-chip:hover,
+.recent-chip:active {
   background-color: #475569;
   color: #ffffff;
+  border-color: var(--accent);
 }
 
-/* Detail Boxes inside Current Weather */
+/* ==========================================
+   Weather Details Grid
+   ========================================== */
 .detail-box {
-  background-color: #0f172a;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #334155;
+  background-color: rgba(15, 23, 42, 0.6);
+  padding: 0.875rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .detail-label {
-  font-size: 12px;
-  color: #94a3b8;
-  margin-bottom: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
 }
 
 .detail-val {
-  font-size: 16px;
-  font-weight: bold;
-  color: #f8fafc;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-main);
 }
 
-/* Forecast Cards */
+/* ==========================================
+   Forecast Grid & Layouts
+   ========================================== */
 .forecast-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 12px;
+  /* Auto-fits 2 columns minimum on tiny screens, scales up smoothly */
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  gap: 0.625rem;
 }
 
 .forecast-card {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  padding: 16px 10px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 0.5rem;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease;
+}
+
+.forecast-card:active {
+  transform: translateY(-2px);
 }
 
 .forecast-day {
-  font-weight: bold;
-  color: #cbd5e1;
-  margin-bottom: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin-bottom: 0.5rem;
 }
 
 .forecast-temp {
-  font-size: 16px;
-  font-weight: bold;
-  color: #f8fafc;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-main);
 }
 
 .status-text {
   text-align: center;
-  color: #94a3b8;
-  font-size: 14px;
-  padding: 12px 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  padding: 1rem 0;
+}
+
+/* ==========================================
+   Tablet & Desktop Enhancement
+   ========================================== */
+@media (min-width: 640px) {
+  .page-wrapper {
+    padding: 3rem 1.5rem;
+  }
+
+  .app-title {
+    font-size: 2.25rem;
+  }
+
+  .card {
+    padding: 1.75rem;
+  }
 }
