@@ -1,0 +1,183 @@
+/* Base Reset & Dark Mode Theme */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0f172a; /* Deep dark blue-gray */
+  color: #f8fafc; /* Crisp off-white text */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  min-height: 100vh;
+}
+
+/* Page Layout Container */
+.page-wrapper {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  background-color: #0f172a;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.app-title {
+  text-align: center;
+  color: #f8fafc;
+  font-size: 2rem;
+  margin-bottom: 24px;
+}
+
+/* Search Bar Styles */
+.search-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  color: #f8fafc;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+.search-input:focus {
+  border-color: #38bdf8;
+}
+
+.search-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #0284c7;
+  border: none;
+  borderRadius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #0369a1;
+}
+
+/* Weather & Forecast Cards */
+.card {
+  background-color: #1e293b; /* Dark slate card background */
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 20px;
+  color: #f8fafc;
+  margin-bottom: 12px;
+}
+
+/* Recent Searches Chips */
+.recent-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.recent-title {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.recent-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.recent-chip {
+  background-color: #334155;
+  color: #e2e8f0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.recent-chip:hover {
+  background-color: #475569;
+  color: #ffffff;
+}
+
+/* Detail Boxes inside Current Weather */
+.detail-box {
+  background-color: #0f172a;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+}
+
+.detail-label {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.detail-val {
+  font-size: 16px;
+  font-weight: bold;
+  color: #f8fafc;
+}
+
+/* Forecast Cards */
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 12px;
+}
+
+.forecast-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.forecast-day {
+  font-weight: bold;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+}
+
+.forecast-temp {
+  font-size: 16px;
+  font-weight: bold;
+  color: #f8fafc;
+}
+
+.status-text {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+  padding: 12px 0;
+}
